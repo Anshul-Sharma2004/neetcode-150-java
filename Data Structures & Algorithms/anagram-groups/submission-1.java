@@ -1,0 +1,31 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        int index=strs.length-1;
+        Map<String, List<String>> map= new HashMap<>();
+        
+        for(String start:strs){
+            int[] count= new int[26];
+            for(char getCount:start.toCharArray()){
+                count[getCount - 'a']++;
+            }           
+
+            
+            StringBuilder sb= new StringBuilder();
+            for(int freq: count){
+            sb.append('#');
+            sb.append(freq);
+           }
+
+        String keys= sb.toString();
+        if(!map.containsKey(keys)){
+            map.put(keys, new ArrayList<String>());
+        }  
+         map.get(keys).add(start);
+
+        }
+
+        return new ArrayList<>(map.values());
+
+        
+    }
+}
